@@ -21,8 +21,13 @@ def generate():
 
     sock_image = Image.open(template_path).convert("RGBA")
     draw = ImageDraw.Draw(sock_image)
-    font = ImageFont.load_default()
-    draw.text((40, 20), team_name.upper(), fill=team_colors[1], font=font)
+    try:
+        font = ImageFont.truetype("arial.ttf", 36)
+    except:
+        font = ImageFont.load_default()
+
+    draw.text((50, 150), f"{team_name.upper()}", fill=team_colors[1], font=font)
+    draw.text((50, 220), f"Mascot: {mascot}", fill=team_colors[0], font=font)
 
     output_path = "static/images/mockup_result.png"
     sock_image.save(output_path)
