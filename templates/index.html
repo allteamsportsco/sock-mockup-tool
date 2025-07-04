@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ATS Sock Mockup Generator</title>
+</head>
+<body>
+  <h1>All Team Sports Co. - Sock Mockup Generator</h1>
+  <form action="/generate" method="post">
+    <label>Team Name:</label><br>
+    <input type="text" name="team_name" required><br><br>
+
+    <label>Team Colors (Primary/Secondary):</label><br>
+    <input type="text" name="team_colors" required><br><br>
+
+    <label>Team Mascot:</label><br>
+    <input type="text" name="mascot" required><br><br>
+
+    <label>Sock Style:</label><br>
+    <select name="sock_style" required>
+      <option value="front_back">Front/Back</option>
+      <option value="side_side">Side/Side</option>
+    </select><br><br>
+
+    <button type="submit">Generate Mockup</button>
+  </form>
+</body>
+</html>
