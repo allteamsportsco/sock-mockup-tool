@@ -3,26 +3,38 @@
 <head>
   <meta charset="UTF-8">
   <title>ATS Sock Mockup Generator</title>
+  <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
-  <h1>All Team Sports Co. - Sock Mockup Generator</h1>
-  <form action="/generate" method="post">
-    <label>Team Name:</label><br>
-    <input type="text" name="team_name" required><br><br>
+  <header>
+    <img src="/static/images/ats-logo.png" alt="ATS Logo">
+    <h1>All Team Sports Co.</h1>
+    <p>One Team. One Goal. One Cause.</p>
+  </header>
 
-    <label>Team Colors (Primary/Secondary):</label><br>
-    <input type="text" name="team_colors" required><br><br>
+  <main>
+    <form action="/generate" method="post">
+      <label for="team_name">Team Name</label>
+      <input type="text" id="team_name" name="team_name" placeholder="e.g. Knights" required>
 
-    <label>Team Mascot:</label><br>
-    <input type="text" name="mascot" required><br><br>
+      <label for="team_colors">Team Colors (Primary/Secondary)</label>
+      <input type="text" id="team_colors" name="team_colors" placeholder="e.g. Red/White" required>
 
-    <label>Sock Style:</label><br>
-    <select name="sock_style" required>
-      <option value="front_back">Front/Back</option>
-      <option value="side_side">Side/Side</option>
-    </select><br><br>
+      <label for="mascot">Mascot</label>
+      <input type="text" id="mascot" name="mascot" placeholder="e.g. Swords" required>
 
-    <button type="submit">Generate Mockup</button>
-  </form>
+      <label for="sock_style">Sock Style</label>
+      <select id="sock_style" name="sock_style" required>
+        <option value="front_back">Front/Back</option>
+        <option value="side_side">Side/Side</option>
+      </select>
+
+      <button type="submit">Generate Mockup</button>
+    </form>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 All Team Sports Co. All rights reserved.</p>
+  </footer>
 </body>
 </html>
