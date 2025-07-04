@@ -21,13 +21,14 @@ def generate():
 
     sock_image = Image.open(template_path).convert("RGBA")
     draw = ImageDraw.Draw(sock_image)
+
     try:
-        font = ImageFont.truetype("arial.ttf", 36)
+        font = ImageFont.truetype("arial.ttf", 28)
     except:
         font = ImageFont.load_default()
 
-    draw.text((50, 150), f"{team_name.upper()}", fill=team_colors[1], font=font)
-    draw.text((50, 220), f"Mascot: {mascot}", fill=team_colors[0], font=font)
+    draw.text((40, 50), f"Team: {team_name}", fill="black", font=font)
+    draw.text((40, 100), f"Mascot: {mascot}", fill="black", font=font)
 
     output_path = "static/images/mockup_result.png"
     sock_image.save(output_path)
