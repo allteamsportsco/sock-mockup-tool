@@ -32,37 +32,39 @@
 
   <canvas id="sockCanvas" width="500" height="1000"></canvas>
 
-  <script>
-    function generateMockup() {
-      const canvas = document.getElementById('sockCanvas');
-      if (!canvas) return;
+ <script>
+function generateMockup() {
+    const canvas = document.getElementById('sockCanvas');
+    const ctx = canvas.getContext('2d');
 
-      const ctx = canvas.getContext('2d');
-      const sockStyle = document.getElementById('sock_style').value;
-      const color = document.getElementById('sockColor').value;
+    const sockStyle = document.getElementById('sock_style').value;
+    const baseSock = new Image();
 
-      const imagePath = 'static/images/' + sockStyle + '.png';
-      const baseSock = new Image();
+    // Choose image based on sock style
+    if (sockStyle === 'front_back') {
+        baseSock.src = './static/images/front_back.png';
+    } else {
+        baseSock.src = './static/images/side_side.png';
+    }
 
-      baseSock.onload = () => {
+    baseSock.onload = () => {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.drawImage(baseSock, 0, 0, canvas.width, canvas.height);
 
-        // Add sock overlay color
-        ctx.globalAlpha = 0.3;
+        const color = document.getElementById('sockColor').value;
+        ctx.globalAlpha = 0.4;
         ctx.fillStyle = color;
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         ctx.globalAlpha = 1.0;
 
-        // Add text overlay
-        ctx.font = "bold 40px Arial";
-        ctx.fillStyle = "#ffffff";
-        ctx.fillText(document.getElementById('team_name').value, 20, 80);
-        ctx.fillText(document.getElementById('mascot').value, 20, 140);
-      };
+        // Optional: add mascot text
+        const mascot = document.getElementById('mascot').value;
+        ctx.fillStyle = "#000";
+        ctx.font = "40px Arial";
+        ctx.fillText(mascot, 40, canvas.height - 60);
+    };
+}
+</script>
 
-      baseSock.src = imagePath;
-    }
-  </script>
 </body>
 </html>
