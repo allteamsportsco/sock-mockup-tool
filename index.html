@@ -6,72 +6,39 @@
   <link rel="stylesheet" href="static/css/style.css" />
 </head>
 <body>
-  <h2>Generate Custom Sock Mockup</h2>
+  <h1>Generate Custom Sock Mockup</h1>
 
-  <form onsubmit="generateMockup(); return false;">
-    <label for="team_name">Team Name:</label>
-    <input type="text" id="team_name" required /><br>
+  <form id="mockupForm">
+    <label>Team Name:</label>
+    <input type="text" id="teamName" placeholder="e.g., Tigers" /><br/>
 
-    <label for="team_colors">Team Colors:</label>
-    <input type="text" id="team_colors" placeholder="Red/White" required /><br>
+    <label>Team Colors:</label>
+    <input type="text" id="teamColors" placeholder="e.g., Orange/White" /><br/>
 
-    <label for="mascot">Mascot:</label>
-    <input type="text" id="mascot" placeholder="e.g., Tigers" required /><br>
+    <label>Mascot:</label>
+    <input type="text" id="mascot" placeholder="e.g., Tiger Paw" /><br/>
 
-    <label for="sock_style">Sock Style:</label>
-    <select id="sock_style">
-      <option value="front_back">Front/Back</option>
-      <option value="side_side">Side/Side</option>
-    </select><br><br>
+    <label>Sock Style:</label>
+    <select id="sockStyle">
+      <option value="side">Side/Side</option>
+      <option value="front">Front/Back</option>
+    </select><br/>
 
-    <label for="sock_color">Select Sock Color:</label>
-    <input type="color" id="sockColor" value="#000000" /><br><br>
+    <label>Select Sock Color:</label>
+    <div id="colorSwatches">
+      <button type="button" class="color-btn" data-color="#FF4500" style="background:#FF4500"></button>
+      <button type="button" class="color-btn" data-color="#56A0D3" style="background:#56A0D3"></button>
+      <button type="button" class="color-btn" data-color="#FFD700" style="background:#FFD700"></button>
+      <button type="button" class="color-btn" data-color="#800000" style="background:#800000"></button>
+    </div>
+    <input type="hidden" id="sockColor" value="#FF4500" />
 
-    <button type="submit">Generate Mockup</button>
+    <br/>
+    <button type="button" onclick="generateMockup()">Generate Mockup</button>
   </form>
 
-  <canvas id="sockCanvas" width="1000" height="1000" style="display:block; margin-top:20px;"></canvas>
+  <canvas id="sockCanvas" width="400" height="600"></canvas>
 
-
-<script>
-function generateMockup() {
-    const canvas = document.getElementById('sockCanvas');
-    const ctx = canvas.getContext('2d');
-
-    const sockStyle = document.getElementById('sock_style').value;
-    const baseSock = new Image();
-
-    if (sockStyle === 'front_back') {
-        baseSock.src = './static/images/front_back.png';
-    } else {
-        baseSock.src = './static/images/side_side.png';
-    }
-
-    baseSock.onload = () => {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.drawImage(baseSock, 0, 0, canvas.width, canvas.height);
-
-        // ✅ Apply Sock Color
-        const color = document.getElementById('sockColor').value;
-        ctx.globalAlpha = 0.5;
-        ctx.fillStyle = color;
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-        ctx.globalAlpha = 1.0;
-
-        // ✅ Add Team Name and Mascot
-        const teamName = document.getElementById('team_name').value;
-        const mascot = document.getElementById('mascot').value;
-
-        ctx.fillStyle = "#ffffff"; // change to "#000000" for black, or any hex color
-        ctx.font = "bold 40px Arial";
-        ctx.fillText(teamName, 40, 80);
-        ctx.fillText(mascot, 40, 140);
-    };
-}
-</script>
-
-
-
+  <script src="app.js"></script>
 </body>
 </html>
-       
