@@ -6,16 +6,16 @@
   <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
-<h2>Generate Custom Sock Mockup</h2>
+  <h2>Generate Custom Sock Mockup</h2>
 
-<label for="sockColor">Select Sock Color:</label>
-<input type="color" id="sockColor" value="#000000">
+  <label for="sockColor">Select Sock Color:</label>
+  <input type="color" id="sockColor" value="#000000">
 
-<br><br>
+  <br><br>
 
-<button onclick="generateMockup()">Generate Mockup</button>
+  <button onclick="generateMockup()">Generate Mockup</button>
 
-<canvas id="sockCanvas" width="1000" height="1000" style="border:1px solid #ccc; display:block; margin-top:20px;"></canvas>
+  <canvas id="sockCanvas" width="1000" height="1000" style="border:1px solid #ccc; display:block; margin-top:20px;"></canvas>
 
   <header>
     <img src="/static/images/ats-logo.png" alt="ATS Logo">
@@ -37,7 +37,7 @@
       <label for="sock_style">Sock Style</label>
       <select id="sock_style" name="sock_style" required>
         <option value="front_back">Front/Back</option>
-        <option value="side_side">Side/Side</option>
+        <option value="side_side" selected>Side/Side</option>
       </select>
 
       <button type="submit">Generate Mockup</button>
@@ -51,26 +51,26 @@
   <footer>
     <p>&copy; 2025 All Team Sports Co. All rights reserved.</p>
   </footer>
-<script>
-function generateMockup() {
-  const canvas = document.getElementById('sockCanvas');
-  const ctx = canvas.getContext('2d');
 
-  const baseSock = new Image();
-  baseSock.src = '/static/images/side_side.png'; // Change to front_back.png if needed
+  <script>
+    function generateMockup() {
+      const canvas = document.getElementById('sockCanvas');
+      const ctx = canvas.getContext('2d');
 
-  baseSock.onload = () => {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.drawImage(baseSock, 0, 0, canvas.width, canvas.height);
+      const baseSock = new Image();
+      baseSock.src = '/static/images/side_side.png'; // You can switch to front_back.png if needed
 
-    const color = document.getElementById('sockColor').value;
-    ctx.globalAlpha = 0.4;
-    ctx.fillStyle = color;
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.globalAlpha = 1.0;
-  };
-}
-</script>
+      baseSock.onload = () => {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(baseSock, 0, 0, canvas.width, canvas.height);
 
+        const color = document.getElementById('sockColor').value;
+        ctx.globalAlpha = 0.4;
+        ctx.fillStyle = color;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.globalAlpha = 1.0;
+      };
+    }
+  </script>
 </body>
 </html>
